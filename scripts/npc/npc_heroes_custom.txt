@@ -1,0 +1,17 @@
+"DOTAHeroes"
+{
+	"npc_dota_hero_earth_spirit_template"
+	{
+		"override_hero"				"npc_dota_hero_earth_spirit"
+		"Ability1"					"earth_spirit_boulder_smash"
+		"Ability3"					"rattletrap_power_cogs"
+		"Ability5"					"earth_spirit_geomagnetic_grip"
+		"Ability6"					"invincible_damage_recoil"
+		"Ability7"					"attribute_bonus"
+		
+		"AbilityLayout"				"6"
+		
+		"VisionDaytimeRange"		"1200"
+		"VisionNighttimeRange"		"650"
+	}
+}

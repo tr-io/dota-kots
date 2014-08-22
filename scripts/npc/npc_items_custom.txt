@@ -1,0 +1,245 @@
+"DOTAAbilities"
+{
+	"item_esw_force_boots"
+	{
+		"ID"				"301"
+		"BaseClass"			"item_datadriven"
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityTextureName"		"esw_force_boots"
+
+		"ItemCost"				"3350"
+		"AbilityCastRange"		"1700"
+		"AbilityCastPoint"		"0.0"
+		"AbilityCooldown"		"10"
+		"AbilityManaCost"		"0"
+
+		"ItemKillable"			"0"
+		"ItemSellable"			"1"
+		"ItemDroppable"			"1"
+		"ItemQuality"			"common"
+		"ItemShareability"		"ITEM_FULLY_SHAREABLE"
+		"ItemShopTags"			"earthspirit; move_speed; hard_to_tag"
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/forceboots.lua"
+				"Function"	"onForceBoots"
+			}
+			
+			"FireSound"
+			{
+				"EffectName"	"DOTA_Item.ForceStaff.Activate"
+				"Target"		"CASTER"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_esw_force_boots"
+			{
+				"Passive"	"1"
+				"IsHidden"	"1"
+				
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_UNIQUE"	"%bonus_movement_speed"
+				}
+			}
+		}
+
+		//Special
+		//-------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"bonus_movement_speed"	"50"
+			}
+			"02"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"distance"		"1000"
+			}
+		}
+	}
+
+	"item_recipe_esw_force_boots"
+	{
+		"ID"				"302"
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+		"BaseClass"			"item_datadriven"
+
+		"ItemCost"			"2000"
+		"ItemShopTags"			""
+		"ItemQuality"			"common"
+
+		"ItemRecipe"			"1"
+		"ItemResult"			"item_esw_force_boots"
+		"ItemRequirements"
+		{
+			"01"			"item_phase_boots"
+		}
+	}
+
+	"item_esw_surge_boots"
+	{
+		"ID"					"303"
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		
+		"BaseClass"				"item_datadriven"
+		"AbilityTextureName"	"esw_surge_boots"
+		
+		"AbilityCastRange"		"0"
+		"AbilityCastPoint"		"0.0"
+		"AbilityCooldown"		"20.0"
+		
+		"ItemCost"				"3350"
+		"ItemShopTags"			"earthspirit; move_speed; hard_to_tag"
+		"ItemAliases"			"surge boots"
+		"ItemQuality"			"common"
+		"ItemShareability"		"ITEM_FULLY_SHAREABLE"
+		
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"ModifierName"		"modifier_ft_surge_boots_active"
+				"Target"			"CASTER"
+			}
+		}
+		
+		"Precache"
+		{
+			"particle_folder"		"particles/units/heroes/hero_dark_seer"
+		}
+
+		"Modifiers"
+		{
+			"modifier_ft_surge_boots"
+			{
+				"Passive"						"1"
+				"IsHidden"						"1"
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_UNIQUE"  	"%bonus_movement_speed"
+				}
+			}
+
+			"modifier_ft_surge_boots_active"
+			{
+				"Duration"						"%surge_duration"
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE_UNIQUE"		"%surge_movement_speed"
+				}
+
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"EffectName"					"particles/units/heroes/hero_dark_seer/dark_seer_surge.vpcf"
+						"EffectAttachType"				"follow_origin"
+						"Target"						"CASTER"
+						"EffectLifeDurationScale"		"1"					
+					}
+
+					"FireSound"
+					{
+						"EffectName"					"Hero_Dark_Seer.Surge"
+						"Target"						"CASTER"
+					}
+				}
+
+				"OnDestroy"
+				{
+					"ApplyModifier"
+					{
+						"ModifierName"					"modifier_ft_surge_boots_crash"
+						"Target"						"CASTER"
+					}
+				}
+			}
+
+			"modifier_ft_surge_boots_crash"
+			{
+				"Duration"						"%crash_duration"
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"		"%crash_movement_speed"
+				}
+
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"EffectName"					"rod_of_atos_debuff"
+						"EffectAttachType"				"follow_origin"
+						"Target"						"CASTER"
+						"EffectLifeDurationScale"		"1.0"					
+					}
+				}
+			}
+		}
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"surge_duration"			"4.5"
+			}
+
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"surge_movement_speed"		"300"
+			}
+
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"bonus_movement_speed"		"50"
+			}
+
+			"04"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"crash_duration"			"1.5"
+			}
+
+			"05"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"crash_movement_speed"		"-75"
+			}
+		}
+	}
+	
+	item_recipe_esw_surge_boots
+	{
+		"ID"					"304"
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		"BaseClass"				"item_datadriven"
+		
+		"ItemCost"				"2000"
+		"ItemShopTags"			""
+		"ItemQuality"			"common"
+
+		"ItemRecipe"			"1"
+		"ItemResult"			"item_esw_surge_boots"
+		"ItemRequirements"
+		{
+			"01"				"item_phase_boots"
+		}
+	}
+}

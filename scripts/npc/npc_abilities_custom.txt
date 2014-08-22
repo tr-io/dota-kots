@@ -1,0 +1,41 @@
+// Dota Heroes File
+"DOTAAbilities"
+{
+	"Version"		"1"
+
+	"invincible_damage_recoil"
+	{
+		"BaseClass"				"ability_datadriven"
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"	"omniknight_degen_aura"
+		"MaxLevel"		"1"
+
+		"OnOwnerSpawned"
+		{
+			"Target"			"CASTER"
+			"ApplyModifier"		"invincible_vs_damage"
+			
+			"AttachEffect"
+			{
+				"EffectName"	"particles/units/heroes/hero_earth_spirit/earthspirit_stone_clap_shock.vpcf"
+				"EffectAttachType"	"follow_origin"
+				"Target"		"CASTER"
+				"EffectLifeDurationScale"		"30"
+			}
+		}
+
+		"Modifiers"
+		{
+			"invincible_vs_damage"
+			{
+				"Passive"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE"	"-100"
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT"	"500"
+				}
+			}
+		}
+	}
+	
+}

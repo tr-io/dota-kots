@@ -1,0 +1,4 @@
+"Bash City"
+{
+		"npc_dota_hero_earth_spirit"		"1"
+}

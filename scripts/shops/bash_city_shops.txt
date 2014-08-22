@@ -1,0 +1,26 @@
+"dota_shops"
+{
+	"consumables"
+	{
+		"item"		"item_ward_observer"
+		"item"		"item_ward_sentry"
+	}
+
+	"attributes"
+	{
+		"item"		"item_phase_boots"
+		"item"		"item_force_staff"
+	}
+
+	"weapons_armor"
+	{
+		"item"		"item_esw_force_boots"
+		"item"		"item_esw_surge_boots"
+	}
+	
+	"misc"
+	{
+		"item"		"item_sphere"
+		"item"		"item_shivas_guard"
+	}
+}
